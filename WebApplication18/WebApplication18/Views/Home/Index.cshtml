@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <a href="https://localhost:5001/Account/GoogleAuth">Google Auth</a>
+    <button onclick="clickButton()">Can Get if after Auth</button>
+</div>
+
+@section Scripts{
+<script>
+    fetch("https://localhost:5001/WeatherForecast/Get", {
+        credentials: 'include'
+    }).then(x => {
+        console.log(x);
+        return x.json();
+    }).then(x =>{
+        console.log(x);
+    });
+
+    function clickButton(){
+        fetch("https://localhost:5001/WeatherForecast/Get2", {
+            credentials: 'include'
+        }).then(x => {
+            console.log("===Authed!!===")
+            console.log(x);
+            return x.json();
+        }).then(x => {
+            console.log(x);
+        });
+    }
+</script>
+}
